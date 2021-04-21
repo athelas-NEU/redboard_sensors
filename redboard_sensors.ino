@@ -27,7 +27,7 @@ std_msgs::Float32MultiArray temp_msg;
 ros::Publisher distance_publisher("distance", &distance_msg);
 ros::Publisher pressure_publisher("pressure", &pressure_msg);
 ros::Publisher reset_publisher("arm_control/reset", &reset_msg);
-ros::Publisher pub_temp("temp", &temp_msg);
+ros::Publisher pub_temp("biosensors/temp", &temp_msg);
 
 void setup()
 {
@@ -65,7 +65,7 @@ void loop() {
     reset_publisher.publish(&reset_msg);
   }
 
-  temp_msg.data[0] = mlx.readObjectTempF();
+  temp_msg.data[0] = mlx.readObjectTempF() + 2;
 //  temp_msg.data[0] = rand() % 35 + 65;
   pub_temp.publish(&temp_msg);
   
